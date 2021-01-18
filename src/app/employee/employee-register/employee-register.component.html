@@ -1,0 +1,72 @@
+<div class="container">
+  <mat-toolbar color="accent">
+    <h1>Employee Register</h1>
+  </mat-toolbar>
+ <mat-card *ngIf="employeeList.length > 0 ">
+  <form  #form="ngForm">
+   <div class="row">
+    <div class="col-lg-5 col-xs-4"></div>
+    <div class="col-lg-6 col-xs-8 float-right">
+      <label for="filtder">Filter by:</label>
+      <select matInput  name="comploc" class="mx-2" name="loc"
+      [(ngModel)]="loc" (change)="applyFilter($event.target.value)">
+        <option  disabled selected value>Company Location</option>
+        <option value="Sydney">Sydney</option>
+        <option value="Melbourne">Melbourne</option>
+        <option value="Brisbane">Brisbane</option>
+        <option value="Perth">Perth</option>
+      </select>
+      <select name="compsize" class="mx-2" name="sizes"
+      [(ngModel)]="sizes"
+      (change)="sizes">
+        <option disabled selected value>Company Size</option>
+        <option value="Large">Large</option>
+        <option value="Medium">Medium</option>
+        <option value="Small">Small</option>
+      </select>
+
+    </div>
+   </div>
+   <table class="table table-bordered"  >
+     <thead>
+       <tr>
+          <th>Name</th>
+          <th>Email Address</th>
+          <th>Age</th>
+          <th>Company</th>
+          <th>Action</th>
+       </tr>
+
+     </thead>
+     <tbody>
+       <tr  *ngFor="let emplist of employeeList " >
+
+             <td>{{emplist.fname}} {{emplist.lname}}</td>
+             <td>{{emplist.email}}</td>
+             <td>{{emplist.age}}</td>
+             <td>{{emplist.company}}</td>
+             <td>
+              <a mat-button color="primary" [routerLink]="['/edit', emplist.id]">EDIT</a>
+              <!-- <button mat-raised-button color="primary" class="justify-content-center mx-2" (click)="onEdit(emplist.id)">EDIT</button> -->
+              <button mat-raised-button color="warn" class="justify-content-center mx-2" (click)="onDelete(emplist.id)">DELETE</button></td>
+
+
+        </tr>
+     </tbody>
+   </table>
+   <div class="row">
+     <div class="col-8">
+      <mat-paginator [length]="totalPosts" [pageSize]="rowsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)"
+  *ngIf="employeeList.length > 0"></mat-paginator>
+     </div>
+     <div class="col-4 float-right"><button mat-raised-button color="primary" class="justify-content-center mx-auto" (click)="onCreate()">Add New</button></div>
+   </div>
+   </form>
+ </mat-card>
+ <div class="row my-2">
+   <div class="col-12" *ngIf="employeeList.length <= 0">
+     No Records to print
+   </div>
+ </div>
+</div>
+<br><br><br>

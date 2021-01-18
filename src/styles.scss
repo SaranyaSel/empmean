@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+$error-color:#dd1932;
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/*error part*/
+.error-text {
+  color: $error-color;
+  font-weight: bold;
+  white-space: pre-line;
+}
+
+
+.error-msg {
+  //,input.ng-invalid.ng-touched,select.ng-invalid.ng-touched
+  color: $error-color !important;
+  font-weight: bold;
+  input,
+  select {
+    border-left: 5px solid $error-color !important;
+  }
+}
+
+.success-msg {
+  color: #000000 !important; // font-weight: bold;
+  input,
+  select {
+    border-left: 5px solid green !important;
+  }
+}

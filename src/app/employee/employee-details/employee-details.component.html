@@ -1,0 +1,45 @@
+<div class="container">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <mat-toolbar color="accent">
+    <h1>Employee Details</h1>
+  </mat-toolbar>
+  <mat-card>
+    <form class="form-horizontal" [formGroup]="registerForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+      <div class="row">
+        <div class="col-12 error-text" *ngIf="errorMsg.message">
+          {{errorMsg.message}}
+        </div>
+      </div>
+      <div class="row my-2" [ngClass]="fnStyle">
+        <label class="col-3" for="fname">First name:</label>
+        <input class="col-8" matinput type="text" formControlName="fname" placeholder="First Name" autofocus>
+      </div>
+      <div class="row my-2"  [ngClass]="lnStyle">
+        <label class="col-3" for="lname">Last name:</label>
+        <input class="col-8" matinput type="text" formControlName="lname" placeholder="Last Name">
+      </div>
+      <div class="row my-2"  [ngClass]="ageStyle">
+        <label class="col-3" for="age">Age:</label>
+        <input class="col-8" matinput type="number" formControlName="age"  placeholder="Age">
+      </div>
+      <div class="row my-2"  [ngClass]="emailStyle">
+        <label class="col-3" for="email">Email:</label>
+        <input class="col-8" matinput type="email" formControlName="email"  placeholder="Email">
+      </div>
+      <div class="row my-2"  [ngClass]="compStyle">
+        <label class="col-3" for="company">company:</label>
+        <select class="col-8" formControlName="company" >
+          <option disabled selected value>Select</option>
+          <option value="Macrohard Corporation">Macrohard Corporation</option>
+          <option value="Acme Corporation">Acme Corporation</option>
+          <option value="Boogle">Boogle</option>
+          <option value="Tequila Mockingbird">Tequila Mockingbird</option>
+        </select>
+      </div>
+      <div class="row my-3">
+        <button  type="submit" mat-raised-button color="primary" class="justify-content-center mx-auto ">Save</button>
+        <!-- <button mat-raised-button color="primary" class="justify-content-center mx-auto ">Update</button> -->
+      </div>
+    </form>
+  </mat-card>
+</div>
